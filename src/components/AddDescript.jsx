@@ -1,25 +1,28 @@
 import React, {useState} from "react";
-// check sau tại sao addToDo lại có thêm dấu {}
-const EditToDoForm = ({editTodo, task}) => {
-    const [value, setValue] = useState(task.task);
-    const handleSubmit = (e) => {
+
+const AddDescript = ({descript, task}) => {
+    const [value, setValue] = useState(task.description || "");
+
+    const handleDescript = (e) => {
         e.preventDefault();
-        editTodo(task.id, value);
+        console.log("value", value);
+        descript(task.id, value);
     };
+
     return (
-        <form className="toDoForm" onSubmit={handleSubmit}>
+        <form action="toDoForm" onSubmit={handleDescript}>
             <input
                 type="text"
                 className="todo-input"
-                placeholder="Update Task"
                 value={value}
+                placeholder="Add descript"
                 onChange={(e) => setValue(e.target.value)}
             />
             <button type="submit" className="todo-btn">
-                Update Task
+                Add Descript
             </button>
         </form>
     );
 };
 
-export default EditToDoForm;
+export default AddDescript;

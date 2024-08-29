@@ -1,33 +1,35 @@
-import React, {useState} from "react";
+import React from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPenToSquare, faPlus} from "@fortawesome/free-solid-svg-icons";
-import {faTrash} from "@fortawesome/free-solid-svg-icons";
+import {
+    faPlus,
+    faPenToSquare,
+    faTrash,
+} from "@fortawesome/free-solid-svg-icons";
+
 const ToDo = ({task, toggleComplete, deleteComplete, editTodo, descript}) => {
-    const [descriptInput, setdescriptInput] = useState(task.descript);
-    const handleDescript = () => {
-        setdescriptInput(task.id, descriptInput);
-    };
     return (
         <form className="Todo">
-            <p
-                onClick={() => toggleComplete(task.id)}
-                className={`${task.completed ? "completed" : ""}`}
-            >
-                {task.task}
-            </p>
+            <div>
+                <h3
+                    onClick={() => toggleComplete(task.id)}
+                    className={`${task.completed ? "completed" : ""}`}
+                >
+                    {task.task}
+                </h3>
+                <p>{task.description}</p>
+            </div>
             <div>
                 <FontAwesomeIcon
                     icon={faPlus}
-                    onClick={handleDescript}
-                    style={`${task.descript ? "add_descript" : ""}`}
+                    onClick={() => descript(task.id)} // Gọi hàm `descript` khi bấm faPlus
                 />
                 <FontAwesomeIcon
                     icon={faPenToSquare}
-                    onClick={() => editTodo(task.id)}
+                    onClick={() => editTodo(task.id)} // Gọi hàm `editTodo` khi bấm faPenToSquare
                 />
                 <FontAwesomeIcon
                     icon={faTrash}
-                    onClick={() => deleteComplete(task.id)}
+                    onClick={() => deleteComplete(task.id)} // Xóa task khi bấm faTrash
                 />
             </div>
         </form>

@@ -64,8 +64,24 @@ h1 {
     padding: 0.75rem 1rem;
     border-radius: 5px;
     margin-bottom: 1rem;
+    box-shadow: 0px 3px 5px rgb(42, 43, 42);
+    h3 {
+        color: $color_1;
+        text-align: start;
+        width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    p {
+        font-size: 15px;
+    }
 }
+
 .fa-trash {
+    margin-left: 0.75rem;
+}
+.fa-pen-to-square {
     margin-left: 0.75rem;
 }
 .incompleted {
