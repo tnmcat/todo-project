@@ -13,7 +13,7 @@ const AddDescript = ({descript, task}) => {
         <form action="toDoForm" onSubmit={handleDescript}>
             <input
                 type="text"
-                className="todo-input"
+                className="add-description"
                 value={value}
                 placeholder="Add descript"
                 onChange={(e) => setValue(e.target.value)}

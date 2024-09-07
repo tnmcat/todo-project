@@ -1,3 +1,6 @@
+import {faCheck, faCircleXmark} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {toBeDisabled} from "@testing-library/jest-dom/matchers";
 import React, {useState} from "react";
 // check sau tại sao addToDo lại có thêm dấu {}
 const ToDoForm = ({addToDo, refreshTodo}) => {
@@ -12,21 +15,33 @@ const ToDoForm = ({addToDo, refreshTodo}) => {
     };
     return (
         <form className="toDoForm">
-            <input
-                type="text"
-                className="todo-input"
-                placeholder="What task to do today?"
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
-            />
-            {/* <FontAwesomeIcon icon="fa-solid fa-trash-arrow-up" /> */}
-
-            <button type="submit" className="todo-btn" onClick={handleSubmit}>
-                Add Task
-            </button>
-            <button type="button" className="todo-btn" onClick={reFresh}>
-                Delete
-            </button>
+            <div className="input-container">
+                <input
+                    type="text"
+                    className="todo-input"
+                    placeholder="What task to do today?"
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
+                />
+                {value && (
+                    <div>
+                        <FontAwesomeIcon
+                            icon={faCircleXmark}
+                            className="clear-icon"
+                            onClick={reFresh}
+                        />
+                    </div>
+                )}
+            </div>
+            {value ? (
+                <button
+                    type="submit"
+                    className="submit-icon"
+                    onClick={handleSubmit}
+                >
+                    <FontAwesomeIcon icon={faCheck} />
+                </button>
+            ) : null}
         </form>
     );
 };
