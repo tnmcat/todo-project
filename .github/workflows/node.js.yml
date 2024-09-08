@@ -12,3 +12,4 @@ jobs:
       - uses: actions/checkout@v2
       - run: npm install
       - run: npm run build
+      - run: cp -r /web/actions-runner/_work/todo-project/todo-project/build /web/todoapp
