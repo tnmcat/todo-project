@@ -9,9 +9,6 @@ const ToDoForm = ({addToDo, refreshTodo}) => {
         addToDo(value);
         setValue("");
     };
-    const reFresh = () => {
-        setValue("");
-    };
     return (
         <form className="toDoForm">
             <div className="input-container">
