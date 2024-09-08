@@ -27,7 +27,7 @@ const ToDoForm = ({addToDo, refreshTodo}) => {
                         <FontAwesomeIcon
                             icon={faCircleXmark}
                             className="clear-icon"
-                            onClick={reFresh}
+                            onClick={() => setValue("")}
                         />
                     </div>
                 )}
