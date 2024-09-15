@@ -2,7 +2,23 @@ $color_1: #fff;
 $color_2: #ffffff4d;
 $color_3: #c5aeff;
 $font-family_1: "Poppins", sans-serif;
-
+.fa-trash {
+    margin-left: 0.75rem;
+}
+.fa-pen-to-square {
+    margin-left: 0.75rem;
+}
+.fa-circle-xmark {
+    color: white;
+    font-size: medium;
+    margin-left: 2;
+}
+.fa-check {
+    color: black;
+}
+.fa-pen-nib {
+    color: black;
+}
 @import "https://fonts.googleapis.com/css2?family=Poppins&display=swap";
 * {
     font-family: $font-family_1;
@@ -78,7 +94,6 @@ h1 {
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        color: #8758ff;
         margin-top: -1rem;
     }
 }
@@ -92,13 +107,6 @@ h1 {
     margin-bottom: 1rem;
 }
 
-.todo-btn {
-    background: #8758ff;
-    color: $color_1;
-    border: none;
-    padding: 0.55rem;
-    cursor: pointer;
-}
 .Todo {
     display: flex;
     justify-content: space-between;
@@ -122,21 +130,6 @@ h1 {
         font-size: 15px;
     }
 }
-
-.fa-trash {
-    margin-left: 0.75rem;
-}
-.fa-pen-to-square {
-    margin-left: 0.75rem;
-}
-.fa-circle-xmark {
-    color: white;
-    font-size: medium;
-    margin-left: 2;
-}
-.fa-check {
-    color: white;
-}
 .incompleted {
     color: $color_1;
     cursor: pointer;
@@ -158,7 +151,20 @@ h1 {
     align-items: center;
     width: 100%;
 }
-
+.todo-btn {
+    position: inherit;
+    margin-left: 0.5rem;
+    border-radius: 5px;
+    border: none;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: -1rem;
+    width: 2rem;
+    height: 2rem;
+}
 p {
     color: $color_1;
     text-align: start;
@@ -183,19 +189,129 @@ p {
     overflow-y: auto;
     max-height: 70vh;
 }
-.add-description {
-    height: 2.5rem;
-    line-height: 2.5rem;
-    outline: none;
-    background: #8758ff;
-    padding: 0.5rem 2.5rem 0.5rem 1.5rem;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+
+.form-descript {
+    .input-container {
+        position: relative;
+    }
+    .add-description {
+        height: 2.5rem;
+        line-height: 2.5rem;
+        outline: none;
+        background: none;
+        border: 1px solid #8758ff;
+        padding: 0.5rem 2.5rem 0.5rem 1.5rem;
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        width: 100%;
+        border-radius: 5px;
+        padding-right: 2.5rem;
+        color: $color_1;
+    }
+    .todo-btn {
+        position: inherit;
+        margin-left: 0.5rem;
+        border-radius: 5px;
+        border: none;
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin-top: -1rem;
+        width: 2rem;
+        height: 2rem;
+    }
+}
+
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeOverlayIn 0.5s ease-in-out;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    max-width: 500px;
     width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.modal-header {
+    font-size: 1rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+
+    .modal-icon {
+        margin-right: 10px;
+        font-size: 2rem;
+        color: #ff4d4d;
+    }
+}
+
+.task-title {
+    font-size: 1.8rem;
+    color: #ff4d4d;
+    margin-bottom: 10px;
+    text-decoration: line-through;
+    text-decoration-color: #666;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.modal-button {
+    background-color: #ccc;
+    color: #fff;
+    border: none;
     border-radius: 5px;
-    padding-right: 2.5rem;
-    color: $color_1;
-    &::placeholder {
-        color: $color_2;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+
+    &.confirm {
+        background-color: #ff4d4d;
+    }
+
+    &:hover {
+        background-color: #aaa;
+    }
+
+    &.confirm:hover {
+        background-color: #d43f3f;
+    }
+}
+
+@keyframes fadeOverlayIn {
+    from {
+        background-color: rgba(0, 0, 0, 0);
+    }
+    to {
+        background-color: rgba(0, 0, 0, 0.75);
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.8);
+    }
+    to {
+        transform: scale(1);
     }
 }

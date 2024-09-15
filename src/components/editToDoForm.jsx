@@ -1,3 +1,5 @@
+import {faArrowUp} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import React, {useState} from "react";
 // check sau tại sao addToDo lại có thêm dấu {}
 const EditToDoForm = ({editTodo, task}) => {
@@ -16,7 +18,7 @@ const EditToDoForm = ({editTodo, task}) => {
                 onChange={(e) => setValue(e.target.value)}
             />
             <button type="submit" className="todo-btn">
-                Update Task
+                <FontAwesomeIcon icon={faArrowUp} />
             </button>
         </form>
     );

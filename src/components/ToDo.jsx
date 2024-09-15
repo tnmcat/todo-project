@@ -1,36 +1,83 @@
-import React from "react";
+import React, {useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faPlus,
     faPenToSquare,
     faTrash,
 } from "@fortawesome/free-solid-svg-icons";
+import ReactModal from "react-modal";
 
 const ToDo = ({task, toggleComplete, deleteComplete, editTodo, descript}) => {
+    const [isMdOpen, setMdOpen] = useState(false);
+    const [isRadio, setIsRadio] = useState(task.completed);
+    const handleDelete = () => {
+        setMdOpen(true);
+    };
+    const confirmDelete = () => {
+        deleteComplete(task.id);
+        setMdOpen(false);
+    };
+    const closeMd = () => {
+        setMdOpen(false);
+    };
+    const handleRadioClick = () => {
+        const newStatus = !isRadio;
+        setIsRadio(newStatus);
+        toggleComplete(task.id, newStatus);
+    };
     return (
         <form className="Todo">
-            <div>
-                <h3
-                    onClick={() => toggleComplete(task.id)}
-                    className={`${task.completed ? "completed" : ""}`}
-                >
+            <input
+                type="radio"
+                checked={isRadio}
+                onClick={handleRadioClick}
+                value={task.id}
+                // onClick={() => toggleComplete(task.id)}
+            />
+            <label>
+                <h3 className={`${task.completed ? "completed" : ""}`}>
                     {task.task}
                 </h3>
                 <p>{task.description}</p>
-            </div>
+            </label>
             <div>
                 <FontAwesomeIcon
                     icon={faPlus}
-                    onClick={() => descript(task.id)} // Gọi hàm `descript` khi bấm faPlus
+                    onClick={() => descript(task.id)}
                 />
                 <FontAwesomeIcon
                     icon={faPenToSquare}
-                    onClick={() => editTodo(task.id)} // Gọi hàm `editTodo` khi bấm faPenToSquare
+                    onClick={() => editTodo(task.id)}
                 />
-                <FontAwesomeIcon
-                    icon={faTrash}
-                    onClick={() => deleteComplete(task.id)} // Xóa task khi bấm faTrash
-                />
+                {
+                    <FontAwesomeIcon
+                        icon={faTrash}
+                        onClick={() => handleDelete(task.id)}
+                    />
+                }
+                <ReactModal
+                    isOpen={isMdOpen}
+                    onRequestClose={closeMd}
+                    className="modal-content"
+                    overlayClassName="modal-overlay"
+                >
+                    <div className="modal-header">
+                        <span className="modal-icon">⚠️</span>
+                        Are you sure you want to delete?
+                    </div>
+                    <h2 className="task-title">{task.task}</h2>
+                    <div className="button-container">
+                        <button
+                            className="modal-button confirm"
+                            onClick={confirmDelete}
+                        >
+                            Confirm
+                        </button>
+                        <button className="modal-button" onClick={closeMd}>
+                            Cancel
+                        </button>
+                    </div>
+                </ReactModal>
             </div>
         </form>
     );
