@@ -4,9 +4,11 @@ $color_3: #c5aeff;
 $font-family_1: "Poppins", sans-serif;
 .fa-trash {
     margin-left: 0.75rem;
+    cursor: pointer;
 }
 .fa-pen-to-square {
     margin-left: 0.75rem;
+    cursor: pointer;
 }
 .fa-circle-xmark {
     color: white;
@@ -19,6 +21,7 @@ $font-family_1: "Poppins", sans-serif;
 .fa-pen-nib {
     color: black;
 }
+
 @import "https://fonts.googleapis.com/css2?family=Poppins&display=swap";
 * {
     font-family: $font-family_1;
@@ -189,7 +192,11 @@ p {
     overflow-y: auto;
     max-height: 70vh;
 }
-
+.star-icon {
+    color: white;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
 .form-descript {
     .input-container {
         position: relative;

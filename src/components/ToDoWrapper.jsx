@@ -92,7 +92,15 @@ const ToDoWrapper = () => {
         setActiveDescriptId(id);
         setActiveEditId(null);
     };
-
+    const priorityTask = (id) => {
+        setTodos((prevTodos) => {
+            const toDotoMove = prevTodos.find((todo) => todo.id === id);
+            const remainingTodo = prevTodos.filter((todo) => todo.id !== id);
+            const newTodos = [toDotoMove, ...remainingTodo];
+            localStorage.setItem("toDos", JSON.stringify(newTodos));
+            return newTodos;
+        });
+    };
     return (
         <div className="TodoWrapper">
             <div className="container-wrapper">
@@ -108,6 +116,7 @@ const ToDoWrapper = () => {
                             deleteComplete={deleteComplete}
                             editTodo={editTodo}
                             descript={handleAddDescript}
+                            priorityTask={priorityTask}
                         />
                         {activeEditId === todo.id && (
                             <EditToDoForm editTodo={editTask} task={todo} />

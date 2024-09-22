@@ -6,10 +6,19 @@ import {
     faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import ReactModal from "react-modal";
-
-const ToDo = ({task, toggleComplete, deleteComplete, editTodo, descript}) => {
+import {faStar as faStarSolid} from "@fortawesome/free-solid-svg-icons";
+import {faStar as faStarRegular} from "@fortawesome/free-regular-svg-icons";
+const ToDo = ({
+    task,
+    toggleComplete,
+    deleteComplete,
+    editTodo,
+    descript,
+    priorityTask,
+}) => {
     const [isMdOpen, setMdOpen] = useState(false);
     const [isRadio, setIsRadio] = useState(task.completed);
+    const [selectedStar, setSelectedStar] = useState(null);
     const handleDelete = () => {
         setMdOpen(true);
     };
@@ -25,14 +34,17 @@ const ToDo = ({task, toggleComplete, deleteComplete, editTodo, descript}) => {
         setIsRadio(newStatus);
         toggleComplete(task.id, newStatus);
     };
+    const handleStarClick = (id) => {
+        setSelectedStar(id);
+        priorityTask(id);
+    };
     return (
         <form className="Todo">
             <input
                 type="radio"
                 checked={isRadio}
-                onClick={handleRadioClick}
+                onChange={handleRadioClick}
                 value={task.id}
-                // onClick={() => toggleComplete(task.id)}
             />
             <label>
                 <h3 className={`${task.completed ? "completed" : ""}`}>
@@ -40,6 +52,15 @@ const ToDo = ({task, toggleComplete, deleteComplete, editTodo, descript}) => {
                 </h3>
                 <p>{task.description}</p>
             </label>
+            <div>
+                <FontAwesomeIcon
+                    icon={
+                        selectedStar === task.id ? faStarSolid : faStarRegular
+                    }
+                    className="star-icon"
+                    onClick={() => handleStarClick(task.id)}
+                />
+            </div>
             <div>
                 <FontAwesomeIcon
                     icon={faPlus}

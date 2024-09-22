@@ -8,6 +8,7 @@ const EditToDoForm = ({editTodo, task}) => {
         e.preventDefault();
         editTodo(task.id, value);
     };
+
     return (
         <form className="toDoForm" onSubmit={handleSubmit}>
             <input
@@ -17,9 +18,11 @@ const EditToDoForm = ({editTodo, task}) => {
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
             />
-            <button type="submit" className="todo-btn">
-                <FontAwesomeIcon icon={faArrowUp} />
-            </button>
+            {value ? (
+                <button type="submit" className="todo-btn">
+                    <FontAwesomeIcon icon={faArrowUp} />
+                </button>
+            ) : null}
         </form>
     );
 };
